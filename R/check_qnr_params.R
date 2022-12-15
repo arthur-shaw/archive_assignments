@@ -3,16 +3,16 @@
 # =============================================================================
 
 #' Check whether questionnaire exists
-#' 
+#'
 #' Specify questionnaire ID and, optionally, version(s)
-#' 
+#'
 #' @param qnr_id Character. Questionnaire ID as GUID
 #' @param qnr_versions Numeric vector. Questionnaire versions(s)
 #' @inheritParams susoflows::download_matching
-#' 
+#'
 #' @importFrom susoapi get_questionnaires
 #' @importFrom dplyr filter
-#' 
+#'
 #' @return TRUE/FALSE depending on whether any matching questionnaires found
 qnr_exists <- function(
     qnr_id,
@@ -27,9 +27,9 @@ qnr_exists <- function(
     qnrs <- susoapi::get_questionnaires()
 
     # filter to questionnaires with matching ID and, potentially, versions
-    if (qnr_versions == NULL) {
+    if (length(qnr_versions) == 0) {
         matching_qnrs <- dplyr::filter(qnrs, questionnaireId == qnr_id)
-    } else if (qnr_versions != NULL) {
+    } else if (length(qnr_versions) >= 1) {
         matching_qnrs <- dplyr::filter(qnrs, questionnaireId == qnr_id, version %in% qnr_versions)
     }
 
