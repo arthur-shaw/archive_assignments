@@ -4,6 +4,7 @@
 
 script_dir <- here::here("R/")
 source(fs::path(script_dir, "check_qnr_params.R"))
+source(fs::path(script_dir, "get_matching_assignments.R"))
 
 # =============================================================================
 # Collect assignments
